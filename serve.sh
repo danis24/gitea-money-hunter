@@ -1,4 +1,7 @@
 #!/bin/bash
+echo stop other instance
+IMAGE=$(docker ps | grep "aniqma/gitea" | awk '{ print $1 }')
+docker stop $IMAGE
 BASEPATH=`pwd`
 IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 echo run gitea on $IP host
